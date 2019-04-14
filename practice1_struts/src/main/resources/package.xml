@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="default" namespace="/" extends="struts-default">
+        <!--<default-action-ref name="defaultAction" />--><!--处理其他action处理不了的请求路径-->
+        <default-class-ref class="action.pojo.DefaultAction" /><!--指定默认action类-->
+        <action name="defaultAction" class="action.pojo.DefaultAction">
+            <result>/default.jsp</result>
+        </action>
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+        <action name="hello" class="action.pojo.HelloAction" method="hello">
+            <result name="hello">/hello.jsp</result>
+        </action>
+        <action name="actionImpl" class="action.impl.HelloAction">
+            <result>/default.jsp</result>
+        </action>
+        <action name="actionExtends" class="action.extend.HelloAction">
+            <result>/index.jsp</result>
+        </action>
+    </package>
+</struts>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="servlet" namespace="/servlet" extends="struts-default">
+        <action name="actionContext" class="action.servlet.ServletAction">
+            <result name="success" type="dispatcher">/demo_success.jsp</result>
+        </action>
+        <action name="aware" class="action.servlet.ServletAwareAction">
+        </action>
+        <action name="context" class="action.servlet.ServletContextAction">
+        </action>
+    </package>
+</struts>
