@@ -1,5 +1,7 @@
 package web.filter;
 
+import i.ModelDriven;
+import org.apache.commons.beanutils.BeanUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -36,7 +38,17 @@ public class ActionFilter implements Filter {
             try {
                 Class clazz = Class.forName(className);
                 Method method = clazz.getDeclaredMethod(methodName);
-                String returnValue = (String) method.invoke(clazz.newInstance());
+                // 将请求参数封装到action类中
+                Object action = clazz.newInstance();
+                if (action instanceof ModelDriven) {
+                    // 模型驱动
+                    Object model = ((ModelDriven)action).getModel();
+                    BeanUtils.populate(model, request.getParameterMap());
+                } else {
+                    // 属性驱动
+                    BeanUtils.populate(action, request.getParameterMap());
+                }
+                String returnValue = (String) method.invoke(action);
                 System.out.println("return value:" + returnValue);
                 Element resultElement = actionElement.element("result");
                 String nameValue = resultElement.attributeValue("name");

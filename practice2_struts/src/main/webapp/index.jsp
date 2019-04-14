@@ -2,6 +2,6 @@
 <html>
 <body>
 <h2>Struts2练习!</h2>
-<a href="${pageContext.request.contextPath}/hello">点我</a>
+<a href="${pageContext.request.contextPath}/hello?username=paulluis&password=123456">点我</a>
 </body>
 </html>
