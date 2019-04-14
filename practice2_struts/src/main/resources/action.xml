@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<struts>
+    <action name="/hello" class="action.HelloAction" method="hello">
+        <result name="hello">/hello.jsp</result>
+    </action>
+</struts>
