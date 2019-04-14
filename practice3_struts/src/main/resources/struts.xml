@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <package name="usr-user" namespace="/usr/user" extends="struts-default">
+        <action name="login" class="action.usr.user.LoginAction">
+            <result name="failed">/usr/user/login.jsp</result>
+            <result type="redirect">/usr/user/success.jsp</result>
+        </action>
+    </package>
+</struts>
