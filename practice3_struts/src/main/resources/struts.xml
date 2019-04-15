@@ -6,10 +6,31 @@
 
 <struts>
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+
     <package name="usr-user" namespace="/usr/user" extends="struts-default">
-        <action name="login" class="action.usr.user.LoginAction">
+        <!--<action name="login" class="action.usr.user.LoginAction">-->
+            <!--<result name="failed">/usr/user/login.jsp</result>-->
+            <!--<result type="redirect">/usr/user/success.jsp</result>-->
+            <!--<result name="input">/usr/user/input.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="register" class="action.usr.user.RegisterAction">-->
+            <!--<result name="failed">/usr/user/register.jsp</result>-->
+            <!--<result type="redirect">/usr/user/success.jsp</result>-->
+            <!--<result name="input">/usr/user/input.jsp</result>-->
+        <!--</action>-->
+        <!--<action name="*" class="action.usr.user.UserAction" method="{1}">-->
+            <!--<result type="redirect">/usr/user/success.jsp</result>-->
+            <!--<result name="input">/usr/user/input.jsp</result>-->
+        <!--</action>-->
+        <action name="login" class="action.usr.user.UserAction" method="login">
             <result name="failed">/usr/user/login.jsp</result>
             <result type="redirect">/usr/user/success.jsp</result>
+            <result name="input">/usr/user/input.jsp</result>
+        </action>
+        <action name="register" class="action.usr.user.UserAction" method="register">
+            <result name="failed">/usr/user/register.jsp</result>
+            <result type="redirect">/usr/user/success.jsp</result>
+            <result name="input">/usr/user/input.jsp</result>
         </action>
     </package>
 </struts>

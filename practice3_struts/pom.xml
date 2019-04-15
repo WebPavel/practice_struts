@@ -149,5 +149,21 @@
         </plugin>
       </plugins>
     </pluginManagement>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <!--<include>**/*-conversion.properties</include>-->
+          <!--<include>**/*.properties</include>-->
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <excludes>
+          <exclude>xwork-conversion.properties</exclude>
+        </excludes>
+      </resource>
+    </resources>
   </build>
 </project>
