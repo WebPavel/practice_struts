@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.custom.i18n.resources" value="language.message" />
+    <constant name="struts.multipart.maxSize" value="20971520" />
+    <package name="biz-album" namespace="/biz/album" extends="struts-default">
+        <interceptors>
+            <!--自定义拦截器，默认拦截器栈失效-->
+            <interceptor name="privilege" class="interceptor.PrivilegeInterceptor">
+                <param name="includeMethods">add,update,delete</param>
+                <param name="excludeMethods">search</param>
+            </interceptor>
+            <interceptor-stack name="privilegeAndDefaultStack">
+                <interceptor-ref name="privilege" />
+                <interceptor-ref name="defaultStack" />
+            </interceptor-stack>
+        </interceptors>
+        <global-results>
+            <result name="login">/content/usr/user/login.jsp</result>
+        </global-results>
+        <action name="*" class="action.biz.album.AlbumAction" method="{1}">
+            <result name="input">/content/input.jsp</result>
+            <interceptor-ref name="privilegeAndDefaultStack" />
+        </action>
+    </package>
+    <package name="usr-user" namespace="/usr/user" extends="struts-default">
+        <action name="login" class="action.usr.user.UserAction" method="login">
+            <result>/content/biz/album/list.jsp</result>
+            <result name="input">/content/usr/user/login.jsp</result>
+        </action>
+    </package>
+    <package name="file" namespace="/file" extends="struts-default">
+        <action name="upload" class="utils.file.upload.FileUploadAction">
+            <result name="input">/content/file/multi_upload.jsp</result>
+            <interceptor-ref name="defaultStack">
+                <param name="fileUpload.allowedExtensions">txt,mp3,doc,png,jpg</param>
+            </interceptor-ref>
+        </action>
+        <action name="download" class="utils.file.download.FileDownloadAction">
+            <result type="stream">
+                <param name="contentType">${contentType}</param>
+                <param name="contentDisposition">attachment;filename=${fileName}</param>
+                <param name="inputStream">${inputStream}</param>
+            </result>
+        </action>
+    </package>
+</struts>
