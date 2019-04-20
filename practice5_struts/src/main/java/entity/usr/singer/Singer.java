@@ -1,5 +1,7 @@
 package entity.usr.singer;
 
+import org.apache.struts2.json.annotations.JSON;
+
 /**
  * 歌手
  */
@@ -10,6 +12,7 @@ public class Singer {
     private String avatar;
     private String profile;
 
+    @JSON(serialize = false)
     public String getId() {
         return id;
     }

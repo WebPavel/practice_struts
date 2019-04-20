@@ -5,5 +5,39 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-
+    <constant name="struts.ognl.allowStaticMethodAccess" value="true" />
+    <package name="ajax" namespace="/ajax" extends="struts-default">
+        <action name="hello" class="action.ajax.AjaxAction" method="execute">
+            <result name="input">/jsp/input.jsp</result>
+        </action>
+    </package>
+    <package name="biz-album" namespace="/biz/album" extends="struts-default">
+        <action name="add" class="action.biz.album.AlbumAction" method="add">
+            <result name="input">/jsp/input.jsp</result>
+            <result name="invalid.token">/jsp/invalid_token.jsp</result>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="token" />
+        </action>
+    </package>
+    <package name="biz-category" namespace="/biz/category" extends="struts-default">
+        <action name="add" class="action.biz.category.CategoryAction" method="add">
+            <result>/jsp/biz/category/list.jsp</result>
+            <result name="input">/jsp/input.jsp</result>
+        </action>
+    </package>
+    <package name="usr-singer" namespace="/usr/singer" extends="json-default">
+        <action name="list" class="action.usr.singer.SingerAction" method="list">
+            <result type="json">
+                <!--<param name="root">singers</param>-->
+                <param name="includeProperties">singers\[\d+\]\.name,singers\[\d+\]\.nickname,singers\[\d+\]\.profile</param>
+            </result>
+            <result name="input">/jsp/input.jsp</result>
+        </action>
+    </package>
+    <package name="usr-user" namespace="/usr/user" extends="struts-default">
+        <action name="list" class="action.usr.user.UserAction" method="list">
+            <result>/jsp/usr/user/list.jsp</result>
+            <result name="input">/jsp/input.jsp</result>
+        </action>
+    </package>
 </struts>

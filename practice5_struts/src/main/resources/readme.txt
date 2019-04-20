@@ -1,2 +1,6 @@
 ognl表达式
 valueStack
+ajax与json
+ActionContext持有ValueStack的引用
+Struts中ValueStack包括root（ArrayList）和context（Map）
+OgnlContext本质是一集合Map，设置root和put非root元素
