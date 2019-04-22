@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <constant name="struts.ui.theme" value="simple" />
+    <package name="usr-user" namespace="/usr/user" extends="struts-default">
+        <global-results>
+            <result name="login">/jsp/usr/user/login.jsp</result>
+        </global-results>
+        <action name="*" class="action.usr.user.UserAction" method="{1}">
+            <result name="login_success">/jsp/usr/user/home.jsp</result>
+            <result name="list_success">/jsp/usr/user/list.jsp</result>
+            <result name="add_success" type="redirectAction">list</result>
+            <result name="listByCond_success">/jsp/usr/user/list.jsp</result>
+            <result name="del_success" type="redirectAction">list</result>
+            <result name="findById_success">/jsp/usr/user/item.jsp</result>
+            <result name="download_success" type="stream">
+                <param name="contentType">${contentType}</param>
+                <param name="contentDisposition">attachment;filename=${fileName}</param>
+                <param name="inputStream">${inputStream}</param>
+            </result>
+            <result name="login_input">/jsp/usr/user/login.jsp</result>
+            <result name="add_input">/jsp/usr/user/edit.jsp</result>
+        </action>
+    </package>
+</struts>
