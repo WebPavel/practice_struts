@@ -37,7 +37,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         UserService userService = new UserService();
         if (upload != null) {
             String uuidFileName = FileUploadUtils.getUUIDFileName(uploadFileName);
-            File destFile = new File("/upload/usr/user" + uuidFileName);
+            File destFile = new File("/upload/usr/user", uuidFileName);
             FileUtils.copyFile(upload, destFile);
             user.setPath(destFile.getCanonicalPath());
             user.setFilename(uploadFileName);
@@ -138,7 +138,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         UserService userService = new UserService();
         if (upload != null) {
             String uuidFileName = FileUploadUtils.getUUIDFileName(uploadFileName);
-            File destFile = new File("/upload/usr/user" + uuidFileName);
+            File destFile = new File("/upload/usr/user", uuidFileName);
             FileUtils.copyFile(upload, destFile);
             user.setPath(destFile.getCanonicalPath());
             user.setFilename(uploadFileName);
