@@ -74,4 +74,10 @@ public class UserDao {
         String sql = "select * from usr_user where id = ?";
         return queryRunner.query(sql, new BeanHandler<User>(User.class), id);
     }
+
+    public int update(User user) throws SQLException {
+        String sql = "update usr_user set username=?, nickname=?, password=?, gender=?, birthday=?, telephone=?, education=?, hobby=?, path=?, filename=?, remark=? where id = ?";
+        Object[] params = {user.getUsername(), user.getNickname(), user.getPassword(), user.getGender(), user.getBirthday(), user.getTelephone(), user.getEducation(), user.getHobby(), user.getPath(), user.getFilename(), user.getRemark(), user.getId()};
+        return queryRunner.update(sql, params);
+    }
 }

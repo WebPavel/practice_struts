@@ -17,9 +17,9 @@
     </style>
 </head>
 <body>
-    <s:form id="form1" name="form1" action="update" namespace="/usr/user" enctype="multipart/form-data" method="POST">
+    <s:form id="form1" name="form1" action="add" namespace="/usr/user" enctype="multipart/form-data" method="POST">
         <table align="center" border="1" width="80%">
-            <caption>编辑用户</caption>
+            <caption>添加用户</caption>
             <tr align="center">
                 <td colspan="2">
                     <s:actionerror />
@@ -31,8 +31,7 @@
                     用户名：
                 </td>
                 <td>
-                    <s:hidden id="id" name="id" value="%{model.id}" />
-                    <s:textfield id="username" name="username" value="%{model.username}" cssClass="text" />
+                    <s:textfield id="username" name="username" cssClass="text" />
                 </td>
             </tr>
             <tr>
@@ -40,7 +39,7 @@
                     昵称：
                 </td>
                 <td>
-                    <s:textfield id="nickname" name="nickname" value="%{model.nickname}" cssClass="text" />
+                    <s:textfield id="nickname" name="nickname" cssClass="text" />
                 </td>
             </tr>
             <tr>
@@ -48,7 +47,7 @@
                     密码：
                 </td>
                 <td>
-                    <s:password id="password" name="password" value="%{model.password}" showPassword="true" cssClass="password-field" />
+                    <s:password id="password" name="password" cssClass="password-field" />
                 </td>
             </tr>
             <tr>
@@ -56,7 +55,7 @@
                     性别：
                 </td>
                 <td>
-                    <s:radio id="gender" name="gender" list="#{'male':'男','female':'女'}" value="%{model.gender}" />
+                    <s:radio id="gender" name="gender" list="#{'male':'男','female':'女'}" value="%{'male'}" />
                 </td>
             </tr>
             <tr>
@@ -64,40 +63,40 @@
                     出生日期：
                 </td>
                 <td>
-                    <s:textfield id="birthday" name="birthday" value="%{model.birthday}" cssClass="text" />
+                    <s:textfield id="birthday" name="birthday" cssClass="text" />
                 </td>
             </tr>
             <tr>
                 <td>联系电话：</td>
-                <td><s:textfield id="telephone" name="telephone" value="%{model.telephone}" cssClass="text" /></td>
+                <td><s:textfield id="telephone" name="telephone" cssClass="text" /></td>
             </tr>
             <tr>
                 <td>学历：</td>
                 <td>
-                    <s:select id="education" name="education" list="#{'primary':'小学','junior':'初中','technical':'中专','senior':'高中','college':'专科','undergraduate':'本科','master':'硕士研究生','doctor':'博士研究生'}" headerKey="" headerValue="--选择学历--" value="%{model.education}" />
+                    <s:select id="education" name="education" list="#{'primary':'小学','junior':'初中','technical':'中专','senior':'高中','college':'专科','undergraduate':'本科','master':'硕士研究生','doctor':'博士研究生'}" headerKey="" headerValue="--选择学历--" />
                 </td>
             </tr>
             <tr>
                 <td>兴趣爱好：</td>
-                <td><s:checkboxlist id="hobby" name="hobby" list="#{'sleep':'睡觉','shopping':'购物','trip':'旅游','training':'健身','movie':'看电影'}" value="%{model.hobby.split(', ')}" /></td>
+                <td><s:checkboxlist id="hobby" name="hobby" list="#{'sleep':'睡觉','shopping':'购物','trip':'旅游','training':'健身','movie':'看电影'}" value="{'sleep','movie'}" /></td>
             </tr>
             <tr>
-                <td>简历：</td>
+                <td>简历上传：</td>
                 <td>
-                    <s:property value="%{model.filename}" />
                     <s:file id="upload" name="upload" size="30" />
                 </td>
             </tr>
             <tr>
                 <td>备注：</td>
                 <td>
-                    <s:textarea id="remark" name="remark" value="%{model.remark}" cols="30" rows="3" />
+                    <s:textarea id="remark" name="remark" cols="30" rows="3" />
                 </td>
             </tr>
             <tr align="center">
                 <td colspan="2">
-                    <s:submit id="submit" value="保存" />
-                    <input type="button" value="取消，返回" onclick="history.go(-1)">
+                    <s:reset id="reset" value="取消" />
+                    <s:submit id="submit" value="添加" />
+                    <input type="button" value="返回" onclick="history.go(-1)">
                 </td>
             </tr>
         </table>

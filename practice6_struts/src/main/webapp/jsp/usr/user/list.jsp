@@ -33,7 +33,7 @@
     </table>
     </s:form>
 </div>
-<div align="right"><a href="${pageContext.request.contextPath}/jsp/usr/user/edit.jsp">添加用户</a></div>
+<div align="right"><a href="${pageContext.request.contextPath}/jsp/usr/user/add.jsp">添加用户</a></div>
 <div>
     <table width="80%" border="1" align="center">
         <caption>用户列表</caption>
@@ -59,7 +59,7 @@
                 <td><s:property value="#user.education" /></td>
                 <td><s:property value="#user.hobby" /></td>
                 <td>
-                    <s:a action="edit" namespace="/usr/user">
+                    <s:a action="findOfSelected" namespace="/usr/user">
                         <s:param name="id" value="%{#user.id}" />
                         编辑
                     </s:a>

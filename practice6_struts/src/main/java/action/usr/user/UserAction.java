@@ -33,7 +33,38 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         this.users = users;
     }
 
-    public String download() {
+    public String update() throws Exception {
+        UserService userService = new UserService();
+        if (upload != null) {
+            String uuidFileName = FileUploadUtils.getUUIDFileName(uploadFileName);
+            File destFile = new File("/upload/usr/user" + uuidFileName);
+            FileUtils.copyFile(upload, destFile);
+            user.setPath(destFile.getCanonicalPath());
+            user.setFilename(uploadFileName);
+        }
+        try {
+            userService.update(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "update_success";
+    }
+
+    /**
+     * 改之前查询
+     * @return
+     */
+    public String findOfSelected() throws Exception {
+        UserService userService = new UserService();
+        try {
+            // 查询用户
+            user = userService.findById(user.getId());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return "findOfSelected_success";
+    }
+    public String download() throws Exception {
         UserService userService = new UserService();
         try {
             // 查询用户
@@ -61,7 +92,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return new FileInputStream(new File(user.getPath()));
     }
 
-    public String findById() {
+    public String findById() throws Exception {
         UserService userService = new UserService();
         try {
             // 查询用户
@@ -72,7 +103,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return "findById_success";
     }
 
-    public String del() {
+    public String del() throws Exception {
         UserService userService = new UserService();
         try {
             // 先查询用户，判断是否有简历，如果有先删除简历
@@ -122,7 +153,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
         return "add_success";
     }
 
-    public String list() {
+    public String list() throws Exception {
         UserService userService = new UserService();
         try {
             users = userService.findAll();
@@ -133,7 +164,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
     }
 
     @InputConfig(resultName = "login_input")
-    public String login() {
+    public String login() throws Exception {
         UserService userService = new UserService();
         try {
             user = userService.login(user);

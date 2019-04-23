@@ -25,6 +25,7 @@
         </tr>
         <tr>
             <td align="center">
+                <%--设置target--%>
                     <s:form id="form1" name="form1" action="login" namespace="/usr/user" target="_top" method="POST" theme="simple">
                         <table border="0" align="center">
                             <tr align="center">
